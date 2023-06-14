@@ -5,8 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Task1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Bank Account Manager" Height="450" Width="800" x:Name="MainWindow">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <DataGrid x:Name="dg_clients" Grid.Row="0" ItemsSource="{Binding Source=ClientList}" Margin="10" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Accounts" Binding="{Binding Account.Count}"/>
+                <DataGridTextColumn Header="Total Balance" Binding="{Binding Account}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="1">
+            <Button x:Name="butt_addClient" Content="Add Client" HorizontalAlignment="Left" Margin="10" />
+            <Button x:Name="butt_openClient" Content="Open Client" HorizontalAlignment="Right" Margin="10" />
+        </Grid>
     </Grid>
 </Window>
