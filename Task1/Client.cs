@@ -78,6 +78,14 @@ namespace Task1
         public string Name { get; }
         public ObservableCollection<Pair<string, int>> Account { get; set; }
 
+        public int TotalBalance
+        {
+            get
+            {
+                return FullBalance();
+            }
+        }
+
         public Client() { }
 
         public Client(string Name, string account)
@@ -199,6 +207,20 @@ namespace Task1
             Account[ind].Balance -= value;
             toClient.Account[0].Balance += value;
             return true;
+        }
+
+        /// <summary>
+        /// Баланс клиента
+        /// </summary>
+        /// <returns>Общий баланс со всех счетов клиента</returns>
+        private int FullBalance()
+        {
+            int balance = 0;
+            foreach(Pair<string, int> pair in Account)
+            {
+                balance += pair.Balance;
+            }
+            return balance;
         }
 
         public JObject Serialize()
